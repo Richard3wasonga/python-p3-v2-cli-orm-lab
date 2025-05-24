@@ -79,13 +79,19 @@ def list_employees():
 def find_employee_by_name():
     name = input("Enter the employee's name: ")
     employee = Employee.find_by_name(name)
-    print(employee) if employee else print(f"Employee {name} not found")
+    if employee:
+        print(employee)
+    else:
+        print(f"Employee {name} not found")
 
 
 def find_employee_by_id():
     id_ = input("Enter the employee's id: ")
     employee = Employee.find_by_id(id_)
-    print(employee) if employee else print(f"Employee {id_} not found")
+    if employee:
+        print(employee)
+    else:
+        print(f"Employee {id_} not found")
 
 
 def create_employee():
@@ -101,7 +107,8 @@ def create_employee():
 
 def update_employee():
     id_ = input("Enter the employee's id: ")
-    if employee := Employee.find_by_id(id_):
+    employee = Employee.find_by_id(id_)
+    if employee:
         try:
             name = input("Enter the employee's new name: ")
             employee.name = name
@@ -120,7 +127,8 @@ def update_employee():
 
 def delete_employee():
     id_ = input("Enter the employee's id: ")
-    if employee := Employee.find_by_id(id_):
+    employee = Employee.find_by_id(id_)
+    if employee:
         employee.delete()
         print(f"Employee {id_} deleted")
     else:
